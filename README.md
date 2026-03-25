@@ -77,31 +77,42 @@ DcOptions::DcOptions(const DcOptions &other)
 
 В примере DC-прокси `mitm_dc.py`, который по сути минимально эмулирует работу DC-прокси серверов Telega, встроена **расшифровка контактов, отправляемых и входящих сообщений в личке/чате/канале, сохранение отправляемых файлов/media**. И это только минимальный набор того, что теперь можно делать.
 
-> **Сразу при открытии парсятся контакты в mitm_media/contacts_\*\*.json** (все данные изменены):  
->>"users": [
+##
+
+**Сразу при открытии парсятся контакты в mitm_media/contacts_\*\*.json** (все данные изменены):  
+>"users": [
     "id=194162455, name='Юрист', @urist, phone=79279517445"
   ],
 
-> **Отправляем сообщение себе в избранное:**  
+##
+
+**Отправляем сообщение себе в избранное:**  
 ![alt text](images/image.png)  
 **Видим в логах:**  
->> DECODED messages.sendMessage →self: 'saving my account password to not forget:\*\*\*\*\*\*  
+> DECODED messages.sendMessage →self: 'saving my account password to not forget:\*\*\*\*\*\*  
 
-> **Отправляем сообщение другу:**  
+##
+
+**Отправляем сообщение другу:**  
 ![alt text](images/image-1.png)  
 **Видим в логах и айди друга, и само сообщение:**  
->> DECODED messages.sendMessage →user(526781221): 'не сегодня'
+> DECODED messages.sendMessage →user(526781221): 'не сегодня'
 
-> **Нам приходит сообщение:**  
+##
+
+**Нам приходит сообщение:**  
 ![alt text](images/image-2.png)  
 **Видим все в логах:**  
->> DECODED updateShortChatMessage MSG ←chat(5067891234) from user(6123456789): 'Секрет!'
+> DECODED updateShortChatMessage MSG ←chat(5067891234) from user(6123456789): 'Секрет!'
 
-> **Отправляем файл/медиа:**  
+##
+
+**Отправляем файл/медиа:**  
 ![alt text](images/image-4.png)  
 **Прокси сохраняет копию локально в mitm_media**  
+![alt text](images/image-5.png)  
 ![alt text](images/image-3.png)
->> Saved upload: ~\mitm_media\20260325_174522_123456789.jpg (7725B)  
+> Saved upload: ~\mitm_media\20260325_174522_123456789.jpg (7725B)  
 DECODED messages.sendMedia →self [photo → 20260325_174522_123456789.jpg]
 
 ## 2. А как же MTProto?
